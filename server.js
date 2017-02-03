@@ -9,6 +9,13 @@ const path = require('path');
 const app = express();
 const compiler = webpack(config);
 
+const MongoClient = require('mongodb').MongoClient
+
+MongoClient.connect('mongodb://root:root@ds135039.mlab.com:35039/heroku_j3f97vfg', (err, database) => {
+  if (err) return console.log(err)
+  console.log("DB Fetched size = "+database.loggedBuilds.size);
+});
+
 const middleware = webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,

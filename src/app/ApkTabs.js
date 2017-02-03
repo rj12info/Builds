@@ -4,6 +4,10 @@ import React, { PropTypes } from 'react';
 var jsonData = require('../../src/app/loggedbuilds.json');
 
 class ApkTabs extends React.Component {
+    FIRST_TAB="All Builds"
+    SECOND_TAB="Recent";
+    THIRD_TAB="Play store APKs"
+    FOURTH_TAB="Release Doc"
 
     constructor(props) {
         super(props);
@@ -34,7 +38,7 @@ class ApkTabs extends React.Component {
         return (
             <section>
                 <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
-                    <Tab label='All Builds'><small>
+                    <Tab label={this.FIRST_TAB}><small>
                         {this.logBuilds.Logged.map(function(object, i){
                             return <Card key={object.title} style={{width: '100%'}}>
                                 <CardTitle
@@ -51,14 +55,14 @@ class ApkTabs extends React.Component {
                         }.bind(this))}
 
                     </small></Tab>
-                    <Tab label='Most Downloaded Builds'><List selectable ripple>
+                    <Tab label={this.SECOND_TAB}><List selectable ripple>
                         <ListCheckbox checked caption='Notify new comics' legend='You will receive a notification when a new one is published' />
                         <ListDivider />
                         <ListItem caption='Contact the publisher' leftIcon='send' />
                         <ListItem caption='Remove this publication' leftIcon='delete' />
                     </List></Tab>
-                    <Tab label='Play Store apks'><small>Play Store apks</small></Tab>
-                    <Tab label='Release Doc'><List selectable ripple>
+                    <Tab label={this.THIRD_TAB}><small>Play Store apks</small></Tab>
+                    <Tab label={this.FOURTH_TAB}><List selectable ripple>
                         {this.logBuilds.Logged.map(function(object, i){
                             return <Card key={"Card"+i} style={{width: '100%'}}>
                                 <CardTitle
