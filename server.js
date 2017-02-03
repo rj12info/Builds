@@ -12,7 +12,7 @@ const compiler = webpack(config);
 
 MongoClient.connect('mongodb://root:root@ds135039.mlab.com:35039/heroku_j3f97vfg', (err, database) => {
   if (err) return console.log(err)
-  console.log("DB Fetched size = "+db.collection('loggedBuilds').count());
+  console.log("DB Fetched size = "+database.collection('loggedBuilds').count());
 });
 
 const middleware = webpackDevMiddleware(compiler, {
