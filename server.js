@@ -23,10 +23,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './src/www/index.html'));
 });
 
-const port = 8080;
+const port = 3000;
 const ip = internalIp.v4();
 
-app.listen(port, (err) => {
+app.listen(app.get('port'), (err) => {
   if (err) {
     console.log(err);
     return;
