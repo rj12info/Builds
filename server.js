@@ -27,11 +27,10 @@ app.use(webpackHotMiddleware(compiler));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './src/www/index.html'));
-  console.log("DB Fetched size = "+database.collection('loggedBuilds').count());
 });
 
 app.get('/test', (req, res) => {
-  res.send("DB Fetched size = "+database.collection('loggedBuilds').count());
+  res.send("DB Fetched size = "+db.collection('loggedBuilds').count());
   // console.log("DB Fetched size = "+database.collection('loggedBuilds').count());
 });
 
