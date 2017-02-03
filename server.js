@@ -26,7 +26,7 @@ app.get('*', (req, res) => {
 const port = 3000;
 const ip = internalIp.v4();
 
-app.listen(app.get('port'), (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.log(err);
     return;
