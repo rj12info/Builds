@@ -31,7 +31,7 @@ app.get('/home', (req, res) => {
 
 app.get('/test', (req, res) => {
   res.send("DB Fetched size = "+db.collection('loggedBuilds').count());
-  console.log("DB Fetched size = "+database.collection('loggedBuilds').count({}).then(function (res) {
+  console.log("DB Fetched size = "+db.collection('loggedBuilds').count({}).then(function (res) {
         return res;
       }));
 });
