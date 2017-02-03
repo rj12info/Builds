@@ -12,12 +12,8 @@ const App = () => (
         <NaviDrawer/>
         <section style={{padding: 20}}>
             <ApkTabBar/>
-            {/*<SuccessButton label='Success' primary raised/>*/}
-            {/*<Button label='Primary Button' onMouseUp={openDrawer} primary/>*/}
         </section>
     </div>
 );
 
-function openDrawer() {
-}
 export default App;
