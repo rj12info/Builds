@@ -45,7 +45,7 @@ class apkTabs extends React.Component {
                                     <Button raised label="Eterno" href={object.eterno} />
                                     <Button raised label="Variant" href={object.variant} />
                                     <Button raised label="QA"  href={object.qc} />
-                                    <DialogTags key={object.title} tags={object.tags}/>
+                                    <DialogTags key={"DialogTags"+i} tags={object.tags}/>
                                 </CardActions>
                             </Card>;
                         }.bind(this))}
@@ -60,7 +60,7 @@ class apkTabs extends React.Component {
                     <Tab label='Play Store apks'><small>Play Store apks</small></Tab>
                     <Tab label='Release Doc'><List selectable ripple>
                         {this.logBuilds.Logged.map(function(object, i){
-                            return <Card key={object.title} style={{width: '100%'}}>
+                            return <Card key={"Card"+i} style={{width: '100%'}}>
                                 <CardTitle
                                     title={object.title}
                                     subtitle="Dev logs enabled"

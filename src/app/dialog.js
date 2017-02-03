@@ -26,7 +26,7 @@ class DialogTags extends React.Component {
                     onOverlayClick={this.handleToggle}
                     title='Tags'>
                     {this.props.tags.split(', ').map(function(object, i){
-                        return <Chip>{object}
+                        return <Chip key={"Chip"+i}>{object}
 
                         </Chip>;
                     }.bind(this))}
