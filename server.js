@@ -24,7 +24,6 @@ app.get('*', (req, res) => {
 });
 
 const port = 3000;
-// const ip = internalIp.v4();
 
 app.listen(process.env.PORT || 5000, (err) => {
   if (err) {
@@ -33,7 +32,5 @@ app.listen(process.env.PORT || 5000, (err) => {
   }
 
   console.log(' --------------------------------------');
-  console.log(`    Local: http://0.0.0.0:${port}`);
-  console.log(` External: http://${ip}:${port}`);
   console.log(' --------------------------------------');
 });
