@@ -24,9 +24,9 @@ app.get('*', (req, res) => {
 });
 
 const port = 3000;
-const ip = internalIp.v4();
+// const ip = internalIp.v4();
 
-app.listen(port, (err) => {
+app.listen(process.env.PORT || 5000, (err) => {
   if (err) {
     console.log(err);
     return;
