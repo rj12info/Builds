@@ -8,11 +8,11 @@ const path = require('path');
 const MongoClient = require('mongodb').MongoClient
 const app = express();
 const compiler = webpack(config);
-
+var db;
 
 MongoClient.connect('mongodb://root:root@ds135039.mlab.com:35039/heroku_j3f97vfg', (err, database) => {
   if (err) return console.log(err)
-  console.log("DB Fetched size = "+database.collection('loggedBuilds').count());
+  db = database
 });
 
 const middleware = webpackDevMiddleware(compiler, {
@@ -27,6 +27,12 @@ app.use(webpackHotMiddleware(compiler));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './src/www/index.html'));
+  console.log("DB Fetched size = "+database.collection('loggedBuilds').count());
+});
+
+app.get('/test', (req, res) => {
+  res.send("DB Fetched size = "+database.collection('loggedBuilds').count());
+  // console.log("DB Fetched size = "+database.collection('loggedBuilds').count());
 });
 
 const port = 3000;
