@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 import { AppBar } from 'react-toolbox/lib/app_bar';
 import Logo from './Logo.js';
-import theme from './PurpleAppBar.scss';
+import theme from './grayAppBar.scss';
 
-const PurpleAppBar = ({ children, ...other }) => (
+const grayAppBar = ({ children, ...other }) => (
   <AppBar {...other} theme={theme}>
-    <Logo /> App Example
+    <Logo /> <p style={{color:'#000000'}}>Available builds</p>
     {children}
   </AppBar>
 );
 
-PurpleAppBar.propTypes = {
+grayAppBar.propTypes = {
   children: PropTypes.node
 };
 
-export default PurpleAppBar;
+export default grayAppBar;

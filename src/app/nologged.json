@@ -1,0 +1,17 @@
+{
+  "loggedBuilds": [
+    "Eterno Builds",
+    "Variant Builds",
+    ":Play Store Builds"
+  ],
+  "Logged": [
+    {"Link":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.10.apk", "title":"8.3.10RC"}
+  ],
+  "VariantBuilds": [
+    {"Link":"https://drive.google.com/open?id=0B00GH8mptD5ta2VlcFBBRlN0R0k", "title":"8.3.10RC"}
+
+  ],
+  "PlayStoreBuilds": [
+    {"Link":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.10.apk", "title":"8.3.10RC"}
+  ]
+}

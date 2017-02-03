@@ -1,0 +1,13 @@
+$dGrey: #E4E4E4;
+$white: #fff;
+
+.appBar {
+  background-color: $dGrey;
+
+  > svg {
+    width: 21%;
+    height: 100%;
+    margin-right: 1rem;
+    fill: $white;
+  }
+}
