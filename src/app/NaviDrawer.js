@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import {Drawer, Button, Card, CardTitle} from 'react-toolbox';
-class Navidrawer extends React.Component {
+class NaviDrawer extends React.Component {
     state = {
         active: false
     };
@@ -32,4 +32,4 @@ class Navidrawer extends React.Component {
     }
 }
 
-export default Navidrawer;
+export default NaviDrawer;

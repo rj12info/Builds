@@ -1,8 +1,8 @@
 import React from 'react';
 // import 'react-toolbox/lib/commons.scss';           // Import common styles
 import GrayAppBar from './grayAppBar.js';      // AppBar with simple overrides
-import ApkTabBar from './apkTabs.js';      // AppBar with simple overrides
-import NaviDrawer from './naviDrawer';      // AppBar with simple overrides
+import ApkTabBar from './ApkTabs.js';      // AppBar with simple overrides
+import NaviDrawer from './NaviDrawer';      // AppBar with simple overrides
 import SuccessButton from './SuccessButton.js';    // A button with complex overrides
 import {Button} from 'react-toolbox/lib/button'; // Bundled component import
 

@@ -3,7 +3,7 @@ import DialogTags from './dialog';
 import React, { PropTypes } from 'react';
 var jsonData = require('../../src/app/loggedbuilds.json');
 
-class apkTabs extends React.Component {
+class ApkTabs extends React.Component {
 
     constructor(props) {
         super(props);
@@ -76,4 +76,4 @@ class apkTabs extends React.Component {
     }
 }
 
-export default apkTabs;
+export default ApkTabs;
