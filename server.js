@@ -25,11 +25,14 @@ const middleware = webpackDevMiddleware(compiler, {
 app.use(middleware);
 app.use(webpackHotMiddleware(compiler));
 
-app.get('*', (req, res) => {
+app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, './src/www/index.html'));
 });
 
 app.get('/test', (req, res) => {
+    loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
+     res.send(loggedBuilds.toString())
+   });
 
 });
 
