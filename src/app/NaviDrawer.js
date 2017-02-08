@@ -9,10 +9,17 @@ class NaviDrawer extends React.Component {
         this.setState({active: !this.state.active});
     };
 
+
+
     render () {
         return (
             <div>
-                <Button raised accent label='Show Drawer' onClick={this.handleToggle} />
+                <table>
+                    <tr>
+                        <td cellPadding={100}> <Button raised accent label='Make RC Release' onClick={this.handleToggle} /> </td>
+                    <td cellPadding={100}> <Button raised accent label='Open Drawer' onClick={this.handleToggle} /> </td>
+                    </tr>
+                    </table>
                 <Drawer active={this.state.active} onOverlayClick={this.handleToggle}>
                     <Card style={{width: '100%'}}>
                         <CardTitle

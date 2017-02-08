@@ -5,15 +5,10 @@ const internalIp = require('internal-ip');
 const express = require('express');
 const webpack = require('webpack');
 const path = require('path');
-const MongoClient = require('mongodb').MongoClient
 const app = express();
 const compiler = webpack(config);
-var db;
-
-MongoClient.connect('mongodb://root:root@ds135039.mlab.com:35039/heroku_j3f97vfg', (err, database) => {
-  if (err) return console.log(err)
-  db = database
-});
+const mongoUtil = require('../react-toolbox-example/dbfacade')
+var db = mongoUtil.getDb();
 
 const middleware = webpackDevMiddleware(compiler, {
   noInfo: true,
@@ -31,8 +26,29 @@ app.get('/home', (req, res) => {
 
 app.get('/test', (req, res) => {
     loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
-     res.send(loggedBuilds.toString())
+     res.send(doc)
    });
+
+});
+
+app.post('/create', (req, res) => {
+  loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
+    res.send(doc)
+  });
+
+});
+
+app.post('/update', (req, res) => {
+  loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
+    res.send(doc)
+  });
+
+});
+
+app.post('/delete', (req, res) => {
+  loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
+    res.send(doc)
+  });
 
 });
 

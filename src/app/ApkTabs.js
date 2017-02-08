@@ -1,6 +1,7 @@
 import {Tab, Tabs, Card, Chip, CardTitle, Button, CardActions,  List, ListItem, ListSubHeader, ListDivider, ListCheckbox} from 'react-toolbox';
 import axios from 'axios';
 import DialogTags from './dialog';
+import MakeRCDialog from './rcDilaog';
 import React, { PropTypes } from 'react';
 var jsonData = require('../../src/app/loggedbuilds.json');
 
@@ -12,7 +13,8 @@ class ApkTabs extends React.Component {
 
     constructor(props) {
         super(props);
-        this.logBuilds = jsonData;
+        this.logBuilds = [];
+        this.logBuilds.Logged = [];
     }
     state = {
         index: 0,
@@ -43,7 +45,7 @@ class ApkTabs extends React.Component {
         axios.get('/test')
             .then(function (response) {
                 console.log(response);
-                this.logBuilds = jsonData;
+                this.logBuilds = response.data;
                 this.setState({logBuilds:this.logBuilds});
             }.bind(this))
             .catch(function (error) {
@@ -78,7 +80,7 @@ class ApkTabs extends React.Component {
                         <ListItem caption='Contact the publisher' leftIcon='send' />
                         <ListItem caption='Remove this publication' leftIcon='delete' />
                     </List></Tab>
-                    <Tab label={this.THIRD_TAB}><small>Play Store apks</small></Tab>
+                    <Tab label={this.THIRD_TAB}><small><MakeRCDialog/></small></Tab>
                     <Tab label={this.FOURTH_TAB}><List selectable ripple>
                         {this.logBuilds.Logged.map(function(object, i){
                             return <Card key={"Card"+i} style={{width: '100%'}}>
