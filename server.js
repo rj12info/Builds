@@ -7,7 +7,7 @@ const webpack = require('webpack');
 const path = require('path');
 const app = express();
 const compiler = webpack(config);
-const mongoUtil = require('../react-toolbox-example/dbfacade')
+const mongoUtil = require('./dbfacade')
 var db = mongoUtil.getDb();
 
 const middleware = webpackDevMiddleware(compiler, {
