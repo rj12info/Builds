@@ -5,7 +5,7 @@ import RcTabScreen from './RcTabScreen';
 import React, { PropTypes } from 'react';
 
 class ApkTabs extends React.Component {
-    FIRST_TAB="All Builds"
+    FIRST_TAB="Builds"
     SECOND_TAB="Recent";
     THIRD_TAB="Play store APKs";
     FOURTH_TAB="Release Doc";
