@@ -5,7 +5,7 @@
     ":Play Store Builds"
   ],
   "Logged": [
-    {"title":"8.3.11RC","eterno":"", "variant":"", "qc":"", "isPlayStore":false, "tags":"gify, vscroll video, exoplayer"},
+    {"title":"8.3.11RC","eterno":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.10.apk", "variant":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.10.apk", "qc":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.10.apk", "isPlayStore":false, "tags":"gify, vscroll video, exoplayer"},
     {"title":"8.3.10RC","eterno":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.10.apk", "variant":"http://newshunt.net.in/Test/ideate/app-logged-eterno-stage-release-170202-1.apk", "qc":"http://newshunt.net.in/Test/ideate/app-logged-eterno-qa-release-170202-1.apk", "isPlayStore":false, "tags":"gify, vscroll video, exoplayer"},
     {"title":"8.3.9RC","eterno":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.9.apk", "variant":"http://newshunt.net.in/Test/ideate/app-logged-eterno-stage-release-170201-2.apk", "qc":"http://newshunt.net.in/Test/ideate/app-logged-eterno-qa-release-170201-2.apk", "isPlayStore":false, "tags":"gify, vscroll video, exoplayer"},
     {"title":"8.3.7RC","eterno":"http://newshunt.net.in/Test/ideate/app-prod-release-8.3.7.apk", "variant":"http://newshunt.net.in/Test/ideate/app-logged-eterno-stage-release-170201.apk", "qc":"http://newshunt.net.in/Test/ideate/app-logged-eterno-qa-release-170201.apk", "isPlayStore":false, "tags":"gify, vscroll video, exoplayer"},

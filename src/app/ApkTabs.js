@@ -3,7 +3,9 @@ import axios from 'axios';
 import DialogTags from './dialog';
 import MakeRCDialog from './rcDilaog';
 import React, { PropTypes } from 'react';
-var jsonData = require('../../src/app/loggedbuilds.json');
+import { bindActionCreators } from 'redux';
+import { dispatch } from 'redux';
+import * as addItemActionCreator from './actions/addAction'
 
 class ApkTabs extends React.Component {
     FIRST_TAB="All Builds"
@@ -15,6 +17,7 @@ class ApkTabs extends React.Component {
         super(props);
         this.logBuilds = [];
         this.logBuilds.Logged = [];
+        const actions = bindActionCreators(addItemActionCreator, dispatch);
     }
     state = {
         index: 0,
@@ -39,6 +42,11 @@ class ApkTabs extends React.Component {
 
     componentDidMount(){
         this.loadDBData();
+        let { dispatch } = this.props
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("obtained props "+nextProps)
     }
 
     loadDBData(){
@@ -80,7 +88,7 @@ class ApkTabs extends React.Component {
                         <ListItem caption='Contact the publisher' leftIcon='send' />
                         <ListItem caption='Remove this publication' leftIcon='delete' />
                     </List></Tab>
-                    <Tab label={this.THIRD_TAB}><small><MakeRCDialog/></small></Tab>
+                    <Tab label={this.THIRD_TAB}><small><MakeRCDialog model={this.logBuilds.Logged}/></small></Tab>
                     <Tab label={this.FOURTH_TAB}><List selectable ripple>
                         {this.logBuilds.Logged.map(function(object, i){
                             return <Card key={"Card"+i} style={{width: '100%'}}>

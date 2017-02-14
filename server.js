@@ -8,7 +8,13 @@ const path = require('path');
 const app = express();
 const compiler = webpack(config);
 const mongoUtil = require('./dbfacade')
-var db = mongoUtil.getDb();
+var db;
+mongoUtil.connectToServer( function( err ) {
+  // start the rest of your app here
+  db = mongoUtil.getDb();
+} );
+
+
 
 const middleware = webpackDevMiddleware(compiler, {
   noInfo: true,
