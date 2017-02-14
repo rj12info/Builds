@@ -1,12 +1,10 @@
 import React, {PropTypes} from 'react';
 import {Dialog, RadioGroup, RadioButton, Input, Dropdown, Button} from 'react-toolbox';
 import axios from 'axios';
-import { connect } from 'react-redux'
-import * as addItemActionCreator from './actions/addAction'
 /**
  * Created by jayanth on 06/02/17.
  */
-class MakeRcDialog extends React.Component {
+class RcTabScreen extends React.Component {
     state = {
         value: 'CreateNewRC',
         title: '', eterno: '', stage: '', qa: ''
@@ -26,10 +24,6 @@ class MakeRcDialog extends React.Component {
     handleToggle = () => {
         this.setState({active: !this.state.active});
     }
-
-    handleBuildSelection = (value) => {
-        this.currentSelectedBuild = this.Logged.get(value);
-    };
 
     componentDidMount(){
         this.setState({OPTION:this.OPTION_1});
@@ -58,7 +52,8 @@ class MakeRcDialog extends React.Component {
     }
 
     handleCreateBtn = () => {
-        axios.get('/test')
+        this.props.addRCItem(({ title: this.state.title, eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qa}))
+        axios.get('/fetch')
             .then(function (response) {
                 var addItemActionCreator = function (item) {
                     return {
@@ -67,7 +62,7 @@ class MakeRcDialog extends React.Component {
                     }
                 }
 
-                this.props.dispatch(addItemActionCreator({ id: 1234, description: 'anything' }))
+
             }.bind(this))
             .catch(function (error) {
                 console.log(error);
@@ -143,15 +138,4 @@ class MakeRcDialog extends React.Component {
         );
     }
 }
-const mapStateToProps = (state/*, props*/) => {
-    return {
-        frozen: state.value,
-        time: state.title,
-        // It is very bad practice to provide the full state like that (reduxState: state) and it is only done here
-        // for you to see its stringified version in our page. More about that here:
-        // https://github.com/reactjs/react-redux/blob/master/docs/api.md#inject-dispatch-and-every-field-in-the-global-state
-        reduxState: state,
-    }
-}
-
-export default connect(mapStateToProps)(MakeRcDialog)
+export default RcTabScreen;

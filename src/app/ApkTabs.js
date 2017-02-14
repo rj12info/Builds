@@ -1,11 +1,8 @@
 import {Tab, Tabs, Card, Chip, CardTitle, Button, CardActions,  List, ListItem, ListSubHeader, ListDivider, ListCheckbox} from 'react-toolbox';
 import axios from 'axios';
-import DialogTags from './dialog';
-import MakeRCDialog from './rcDilaog';
+import DialogTags from './ReleaseTagsdialog';
+import RcTabScreen from './RcTabScreen';
 import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { dispatch } from 'redux';
-import * as addItemActionCreator from './actions/addAction'
 
 class ApkTabs extends React.Component {
     FIRST_TAB="All Builds"
@@ -18,7 +15,6 @@ class ApkTabs extends React.Component {
         super(props);
         this.logBuilds = [];
         this.logBuilds.Logged = [];
-        const actions = bindActionCreators(addItemActionCreator, dispatch);
     }
     state = {
         index: 0,
@@ -50,8 +46,23 @@ class ApkTabs extends React.Component {
         console.log("obtained props "+nextProps)
     }
 
+   addRCItem = (rcitem)=> {
+        axios.post('/createrc',rcitem)
+            .then(function (response) {
+                console.log(response);
+                this.logBuilds = response.data;
+                this.setState({logBuilds:this.logBuilds});
+            }.bind(this))
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
     loadDBData(){
-        axios.get('/test')
+        axios.get('/fetchAll')
             .then(function (response) {
                 console.log(response);
                 this.logBuilds = response.data;
@@ -108,7 +119,7 @@ class ApkTabs extends React.Component {
                             </Card>;
                         }.bind(this))}
                     </List></Tab>
-                    <Tab label={this.FIFTH_TAB}><small><MakeRCDialog model={this.logBuilds.Logged}/></small></Tab>
+                    <Tab label={this.FIFTH_TAB}><small><RcTabScreen addRCItem = {this.addRCItem} model={this.logBuilds.Logged}/></small></Tab>
                 </Tabs>
             </section>
         );

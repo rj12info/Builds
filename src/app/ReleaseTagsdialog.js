@@ -11,8 +11,7 @@ class DialogTags extends React.Component {
     }
 
     actions = [
-        { label: "Cancel", onClick: this.handleToggle },
-        { label: "Save", onClick: this.handleToggle }
+        { label: "Ok", onClick: this.handleToggle }
     ];
 
     render () {

@@ -4,8 +4,11 @@ const config = require('./webpack.config');
 const internalIp = require('internal-ip');
 const express = require('express');
 const webpack = require('webpack');
+var bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 const compiler = webpack(config);
 const mongoUtil = require('./dbfacade')
 var db;
@@ -30,16 +33,18 @@ app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, './src/www/index.html'));
 });
 
-app.get('/test', (req, res) => {
+app.get('/fetchAll', (req, res) => {
     loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
      res.send(doc)
    });
 
 });
 
-app.post('/create', (req, res) => {
-  loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
-    res.send(doc)
+app.post('/createrc', (req, res) => {
+  console.log("Jayanth post "+(req.body))
+  loggedBuilds.push(req.body);
+  loggedBuilds = db.collection('loggedBuilds').insertOne({loggedBuilds:{Logged:(req.body)}}, function(err, doc) {
+    console.log(err);
   });
 
 });
