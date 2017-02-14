@@ -10,8 +10,9 @@ import * as addItemActionCreator from './actions/addAction'
 class ApkTabs extends React.Component {
     FIRST_TAB="All Builds"
     SECOND_TAB="Recent";
-    THIRD_TAB="Play store APKs"
-    FOURTH_TAB="Release Doc"
+    THIRD_TAB="Play store APKs";
+    FOURTH_TAB="Release Doc";
+    FIFTH_TAB="Create RC"
 
     constructor(props) {
         super(props);
@@ -82,13 +83,20 @@ class ApkTabs extends React.Component {
                         }.bind(this))}
 
                     </small></Tab>
-                    <Tab label={this.SECOND_TAB}><List selectable ripple>
-                        <ListCheckbox checked caption='Notify new comics' legend='You will receive a notification when a new one is published' />
-                        <ListDivider />
-                        <ListItem caption='Contact the publisher' leftIcon='send' />
-                        <ListItem caption='Remove this publication' leftIcon='delete' />
-                    </List></Tab>
-                    <Tab label={this.THIRD_TAB}><small><MakeRCDialog model={this.logBuilds.Logged}/></small></Tab>
+                    <Tab label={this.SECOND_TAB}>
+                        <td style={{paddingRight:50+'px'}}>
+                            <section>
+                                <strong>Coming soon</strong>
+                            </section>
+                        </td>
+                    </Tab>
+                    <Tab label={this.THIRD_TAB}>
+                        <td style={{paddingRight:50+'px'}}>
+                            <section>
+                                <strong>Coming soon</strong>
+                            </section>
+                        </td>
+                    </Tab>
                     <Tab label={this.FOURTH_TAB}><List selectable ripple>
                         {this.logBuilds.Logged.map(function(object, i){
                             return <Card key={"Card"+i} style={{width: '100%'}}>
@@ -100,6 +108,7 @@ class ApkTabs extends React.Component {
                             </Card>;
                         }.bind(this))}
                     </List></Tab>
+                    <Tab label={this.FIFTH_TAB}><small><MakeRCDialog model={this.logBuilds.Logged}/></small></Tab>
                 </Tabs>
             </section>
         );
