@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 const compiler = webpack(config);
 const mongoUtil = require('./dbfacade')
 var db;
+var loggedBuilds;
 mongoUtil.connectToServer( function( err ) {
   // start the rest of your app here
   db = mongoUtil.getDb();
@@ -34,17 +35,15 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/fetchAll', (req, res) => {
-    loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
-     res.send(doc)
-   });
+  db.collection('loggedBuilds').find().toArray(function(err, documents) {
+    res.send(documents)
+  });
 
 });
 
 app.post('/createrc', (req, res) => {
-  console.log("Jayanth post "+(req.body))
-  loggedBuilds.push(req.body);
-  loggedBuilds = db.collection('loggedBuilds').insertOne({loggedBuilds:{Logged:(req.body)}}, function(err, doc) {
-    console.log(err);
+  loggedBuilds = db.collection('loggedBuilds').insertOne((req.body), function(err, doc) {
+    res.send(doc);
   });
 
 });

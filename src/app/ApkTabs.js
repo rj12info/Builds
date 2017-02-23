@@ -49,13 +49,10 @@ class ApkTabs extends React.Component {
    addRCItem = (rcitem)=> {
         axios.post('/createrc',rcitem)
             .then(function (response) {
-                console.log(response);
-                this.logBuilds = response.data;
-                this.setState({logBuilds:this.logBuilds});
             }.bind(this))
             .then(function (response) {
-                console.log(response);
-            })
+                this.loadDBData();
+            }.bind(this))
             .catch(function (error) {
                 console.log(error);
             });
@@ -64,7 +61,7 @@ class ApkTabs extends React.Component {
     loadDBData(){
         axios.get('/fetchAll')
             .then(function (response) {
-                console.log(response);
+                console.log("response.data "+response.data);
                 this.logBuilds = response.data;
                 this.setState({logBuilds:this.logBuilds});
             }.bind(this))
@@ -78,7 +75,7 @@ class ApkTabs extends React.Component {
             <section>
                 <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
                     <Tab label={this.FIRST_TAB}><small>
-                        {this.logBuilds.Logged.map(function(object, i){
+                        {this.logBuilds.map(function(object, i){
                             return <Card key={object.title} style={{width: '100%'}}>
                                 <CardTitle
                                     title={object.title}
@@ -109,7 +106,7 @@ class ApkTabs extends React.Component {
                         </td>
                     </Tab>
                     <Tab label={this.FOURTH_TAB}><List selectable ripple>
-                        {this.logBuilds.Logged.map(function(object, i){
+                        {this.logBuilds.map(function(object, i){
                             return <Card key={"Card"+i} style={{width: '100%'}}>
                                 <CardTitle
                                     title={object.title}
@@ -119,7 +116,7 @@ class ApkTabs extends React.Component {
                             </Card>;
                         }.bind(this))}
                     </List></Tab>
-                    <Tab label={this.FIFTH_TAB}><small><RcTabScreen addRCItem = {this.addRCItem} model={this.logBuilds.Logged}/></small></Tab>
+                    <Tab label={this.FIFTH_TAB}><small><RcTabScreen addRCItem = {this.addRCItem} model={this.logBuilds}/></small></Tab>
                 </Tabs>
             </section>
         );

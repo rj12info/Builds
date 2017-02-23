@@ -7,7 +7,7 @@ import axios from 'axios';
 class RcTabScreen extends React.Component {
     state = {
         value: 'CreateNewRC',
-        title: '', eterno: '', stage: '', qa: ''
+        title: '', eterno: '', stage: '', qa: '', tags:''
     };
 
     constructor(props) {
@@ -52,21 +52,7 @@ class RcTabScreen extends React.Component {
     }
 
     handleCreateBtn = () => {
-        this.props.addRCItem(({ title: this.state.title, eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qa}))
-        axios.get('/fetch')
-            .then(function (response) {
-                var addItemActionCreator = function (item) {
-                    return {
-                        type: 'ADD_ITEM',
-                        item: item
-                    }
-                }
-
-
-            }.bind(this))
-            .catch(function (error) {
-                console.log(error);
-            });
+        this.props.addRCItem(({ title: this.state.title, eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qa, tags:this.state.tags}))
     }
 
     handleUpdateBtn = () => {
@@ -103,6 +89,8 @@ class RcTabScreen extends React.Component {
                                        onChange={this.handleTextChange.bind(this, 'stage')}/>
                                 <Input type='text' label='QA Link' hint='QA Logged Version' name='name' value={this.state.qa}
                                        onChange={this.handleTextChange.bind(this, 'qa')}/>
+                                <Input type='text' label='Tags' hint='gify, vscroll video, exoplayer' name='name' value={this.state.tags}
+                                       onChange={this.handleTextChange.bind(this, 'tags')}/>
                                 <Button raised accent label='Create new RC' onClick={this.handleCreateBtn} value={this.state.label}/>
                             </section>
                         </td>
