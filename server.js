@@ -35,7 +35,7 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/fetchAll', (req, res) => {
-  db.collection('loggedBuilds').find().toArray(function(err, documents) {
+  db.collection('loggedBuilds').find().sort({'timeStamp':-1}).toArray(function(err, documents) {
     res.send(documents)
   });
 
