@@ -7,9 +7,7 @@ import React, { PropTypes } from 'react';
 class ApkTabs extends React.Component {
     FIRST_TAB="Builds"
     SECOND_TAB="Recent";
-    THIRD_TAB="Play store APKs";
-    FOURTH_TAB="Release Doc";
-    FIFTH_TAB="Create RC"
+    THIRD_TAB="Create RC"
 
     constructor(props) {
         super(props);
@@ -28,6 +26,10 @@ class ApkTabs extends React.Component {
 
     handleFixedTabChange = (index) => {
         this.setState({fixedIndex: index});
+    };
+
+    handleButtonClick = (clickedItem) => {
+        console.log("handleButtonClick "+clickedItem.clicked)
     };
 
     handleInverseTabChange = (index) => {
@@ -82,9 +84,9 @@ class ApkTabs extends React.Component {
                                     subtitle="Dev logs enabled"
                                 />
                                 <CardActions>
-                                    <Button raised label="Eterno" href={object.eterno} />
-                                    <Button raised label="Variant" href={object.variant} />
-                                    <Button raised label="QA"  href={object.qc} />
+                                    <Button raised label="Eterno" href={object.eterno} onMouseUp={function(e){this.handleButtonClick({clicked:object.title})}.bind(this)}/>
+                                    <Button raised label="Variant" href={object.variant} onMouseUp={function(e){this.handleButtonClick({clicked:object.title})}.bind(this)}/>
+                                    <Button raised label="QA"  href={object.qc} onMouseUp={function(e){this.handleButtonClick({clicked:object.title})}.bind(this)}/>
                                     <DialogTags key={"DialogTags"+i} tags={object.tags}/>
                                 </CardActions>
                             </Card>;
@@ -92,31 +94,22 @@ class ApkTabs extends React.Component {
 
                     </small></Tab>
                     <Tab label={this.SECOND_TAB}>
-                        <td style={{paddingRight:50+'px'}}>
-                            <section>
-                                <strong>Coming soon</strong>
-                            </section>
-                        </td>
-                    </Tab>
-                    <Tab label={this.THIRD_TAB}>
-                        <td style={{paddingRight:50+'px'}}>
-                            <section>
-                                <strong>Coming soon</strong>
-                            </section>
-                        </td>
-                    </Tab>
-                    <Tab label={this.FOURTH_TAB}><List selectable ripple>
                         {this.logBuilds.map(function(object, i){
-                            return <Card key={"Card"+i} style={{width: '100%'}}>
+                            return <Card key={object.title} style={{width: '100%'}}>
                                 <CardTitle
                                     title={object.title}
                                     subtitle="Dev logs enabled"
                                 />
-
+                                <CardActions>
+                                    <Button raised label="Eterno" href={object.eterno}/>
+                                    <Button raised label="Variant" href={object.variant}/>
+                                    <Button raised label="QA"  href={object.qc}/>
+                                    <DialogTags key={"DialogTags"+i} tags={object.tags}/>
+                                </CardActions>
                             </Card>;
                         }.bind(this))}
-                    </List></Tab>
-                    <Tab label={this.FIFTH_TAB}><small><RcTabScreen addRCItem = {this.addRCItem} model={this.logBuilds}/></small></Tab>
+                    </Tab>
+                    <Tab label={this.THIRD_TAB}><small><RcTabScreen addRCItem = {this.addRCItem} model={this.logBuilds}/></small></Tab>
                 </Tabs>
             </section>
         );

@@ -52,7 +52,7 @@ class RcTabScreen extends React.Component {
     }
 
     handleCreateBtn = () => {
-        this.props.addRCItem(({ title: this.state.title, eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qa, tags:this.state.tags}))
+        this.props.addRCItem(({ title: this.state.title, eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qa, tags:this.state.tags, timeStamp:new Date().valueOf()}))
     }
 
     handleUpdateBtn = () => {
