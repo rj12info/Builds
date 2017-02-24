@@ -63,7 +63,6 @@ class ApkTabs extends React.Component {
     loadDBData(){
         axios.get('/fetchAll')
             .then(function (response) {
-                console.log("response.data "+response.data);
                 this.logBuilds = response.data;
                 this.setState({logBuilds:this.logBuilds});
             }.bind(this))
