@@ -3,11 +3,11 @@ import React, { PropTypes } from 'react';
 
 class DialogTags extends React.Component {
     state = {
-        active: false
+        success: false
     };
 
     handleToggle = () => {
-        this.setState({active: !this.state.active});
+        this.setState({success: !this.state.success});
     }
 
     actions = [
@@ -20,7 +20,7 @@ class DialogTags extends React.Component {
                 <Button label='Release tags' onClick={this.handleToggle} raised/>
                 <Dialog
                     actions={this.actions}
-                    active={this.state.active}
+                    active={this.state.success}
                     onEscKeyDown={this.handleToggle}
                     onOverlayClick={this.handleToggle}
                     title='Tags'>

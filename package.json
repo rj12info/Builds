@@ -70,6 +70,7 @@
     "sass-lint": "~1.7.0",
     "sass-loader": "~4.0.0",
     "style-loader": "~0.13.1",
+    "underscore": "^1.8.3",
     "webpack": "~1.13.2",
     "webpack-dev-middleware": "~1.6.1",
     "webpack-hot-middleware": "~2.12.2"

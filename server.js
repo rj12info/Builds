@@ -6,6 +6,7 @@ const express = require('express');
 const webpack = require('webpack');
 var bodyParser = require('body-parser')
 const path = require('path');
+var _ = require('underscore');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -38,21 +39,32 @@ app.get('/fetchAll', (req, res) => {
   db.collection('loggedBuilds').find().sort({'timeStamp':-1}).toArray(function(err, documents) {
     res.send(documents)
   });
-
 });
+
 
 app.post('/createrc', (req, res) => {
   loggedBuilds = db.collection('loggedBuilds').insertOne((req.body), function(err, doc) {
     res.send(doc);
   });
-
 });
 
 app.post('/update', (req, res) => {
-  loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
-    res.send(doc)
+  db.collection('loggedBuilds').update({"title":req.body.title}, req.body, function(err,doc){
+    res.send(doc);
   });
+});
 
+app.post('/addtopfive', (req, res) => {
+  db.collection('loggedBuilds').update({"title":req.body.clicked.title}, {$set:{"recentStamp":new Date().valueOf(), "clickCount":clicks}}, function(err,doc){
+    console.log("err "+err+" res"+doc);
+    res.send(doc);
+  });
+});
+
+app.get('/gettopfive', (req, res) => {
+  db.collection('loggedBuilds').find().sort({'clickCount':-1}).limit(5).toArray(function(err, documents) {
+    res.send(documents)
+  });
 });
 
 app.post('/delete', (req, res) => {

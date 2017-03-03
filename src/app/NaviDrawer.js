@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react';
 import {Drawer, Button, Card, CardTitle} from 'react-toolbox';
 class NaviDrawer extends React.Component {
     state = {
-        active: false
+        fixedIndex: false
     };
 
-    handleToggle = () => {
-        this.setState({active: !this.state.active});
+    handleButtonClick = () => {
+        console.log("handleButtonClick ")
+        this.setState({fixedIndex: 2});
     };
 
 
@@ -14,13 +15,7 @@ class NaviDrawer extends React.Component {
     render () {
         return (
             <div>
-                <table>
-                    <tr>
-                        <td cellPadding={100}> <Button raised accent label='Make RC Release' onClick={this.handleToggle} /> </td>
-                    <td cellPadding={100}> <Button raised accent label='Open Drawer' onClick={this.handleToggle} /> </td>
-                    </tr>
-                    </table>
-                <Drawer active={this.state.active} onOverlayClick={this.handleToggle}>
+                <Drawer active={this.state.success} onOverlayClick={this.handleToggle}>
                     <Card style={{width: '100%'}}>
                         <CardTitle
                             title="Logged Builds"
