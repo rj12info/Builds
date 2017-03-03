@@ -127,7 +127,7 @@ class ApkTabs extends React.Component {
     render() {
         return (
             <section>
-                <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
+                <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed style={{width: '100%'}}>
                     <Tab label={this.FIRST_TAB}>
                         <small>
                             {this.isLoading && <ProgressBarCustom mode='indeterminate' active={this.isLoading}/>}

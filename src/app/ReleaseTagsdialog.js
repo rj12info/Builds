@@ -17,7 +17,7 @@ class DialogTags extends React.Component {
     render () {
         return (
             <div>
-                <Button label='Release tags' onClick={this.handleToggle} raised/>
+                <Button label='Tags' onClick={this.handleToggle} raised/>
                 <Dialog
                     actions={this.actions}
                     active={this.state.success}
