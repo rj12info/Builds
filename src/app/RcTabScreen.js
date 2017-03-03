@@ -10,7 +10,8 @@ class RcTabScreen extends React.Component {
         value: 'CreateNewRC',
         title: '', eterno: '', stage: '', qc: '', tags:'',
         isSuccessFulUpdate: false,
-        isSuccessAdd: false
+        isSuccessAdd: false,
+        emptyfields: false
     };
 
     constructor(props) {
@@ -22,6 +23,7 @@ class RcTabScreen extends React.Component {
         this.RC_UPDATE_SUCCESSFUL = "RC update successful";
         this.RC_INSERT_SUCCESSFUL = "RC insert successful";
         this.ERROR_MSG = "An error occured. No records updated";
+        this.GENERIC_NO_INPUT = "Please fill all fields";
 
         this.Logged=this.props.model;
     }
@@ -71,10 +73,33 @@ class RcTabScreen extends React.Component {
     }
 
     handleCreateBtn = () => {
-        this.props.addRCItem(({ title: this.state.title+"RC", eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qc, tags:this.state.tags, timeStamp:new Date().valueOf()}))
+        if(_.isEmpty(this.state.title) || _.isEmpty(this.state.eterno) || _.isEmpty(this.state.stage) || _.isEmpty(this.state.qc)) {
+            this.setState({emptyfields:true});
+            return;
+        }
+        var date = new Date()
+        var title = this.state.title;
+        this.state.title = title.indexOf("RC") !=-1 ? title.substring(0, title.indexOf("RC")):title;
+        this.props.addRCItem(({ title: this.state.title+"RC", eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qc, tags:this.state.tags, timeStamp:parseInt(new Date().valueOf()), rcDate:this.getModifiedDate()}))
+    }
+
+    getModifiedDate = () => {
+        var dmDate = new Date();
+        var month = new Date().getMonth()+1;
+        var locale = "en-us";
+        month = new Date().toLocaleString(locale, { month: "long" });
+        var fullDay = month +" "+dmDate.getDate()+" "+dmDate.getFullYear();
+        return fullDay;
     }
 
     handleUpdateBtn = () => {
+        if(_.isEmpty(this.state.title) || _.isEmpty(this.state.eterno) || _.isEmpty(this.state.stage) || _.isEmpty(this.state.qc)) {
+            this.setState({emptyfields:true});
+            return;
+        }
+        this.setState({emptyfields:false});
+        var title = this.state.title;
+        this.state.title = title.indexOf("RC") !=-1 ? title.substring(0, title.indexOf("RC")):title;
         this.props.updateRCItem(({title: this.state.title+"RC", eterno: this.state.eterno, stage:this.state.stage,qc: this.state.qc, tags:this.state.tags}))
     }
 
@@ -84,6 +109,10 @@ class RcTabScreen extends React.Component {
 
     handleErrorSnackbarClick =() => {
         this.setState({failure:false});
+    }
+
+    handleErrorEmptyFields =() => {
+        this.setState({emptyfields:false});
     }
 
     render() {
@@ -137,6 +166,16 @@ class RcTabScreen extends React.Component {
                     </tr>
                     </tbody>
                 </table>
+                <Snackbar
+                    action='Dismiss'
+                    label={this.GENERIC_NO_INPUT}
+                    active={this.state.emptyfields}
+                    timeout={2000}
+                    onClick={this.handleErrorEmptyFields}
+                    ref='snackbar'
+                    type='accept'
+                />
+
                 <Snackbar
                     action='Dismiss'
                     label={this.state.UISTATE == this.OPTION_1?this.RC_INSERT_SUCCESSFUL:this.RC_UPDATE_SUCCESSFUL}

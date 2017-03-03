@@ -55,7 +55,7 @@ app.post('/update', (req, res) => {
 });
 
 app.post('/addtopfive', (req, res) => {
-  db.collection('loggedBuilds').update({"title":req.body.clicked.title}, {$set:{"recentStamp":new Date().valueOf(), "clickCount":clicks}}, function(err,doc){
+  db.collection('loggedBuilds').update({"title":req.body.clicked.title}, {$set:{"clickCount":req.body.clicked.clickCount}}, function(err,doc){
     console.log("err "+err+" res"+doc);
     res.send(doc);
   });

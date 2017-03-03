@@ -37,13 +37,11 @@ class ApkTabs extends React.Component {
         this.setState({fixedIndex: index});
     };
 
-    handleButtonClick = (clickedItem) => {
+    handleButtonClick = (item) => {
         let clicks = 1;
-        clickedItem.clicks = _.isNumber(clickedItem.clickCount) ? ++clickedItem.clickCount : 1
-        axios.post('/addtopfive', clickedItem)
+        item.clicked.clickCount = _.isNumber(item.clicked.clickCount) ? ++item.clicked.clickCount : 1
+        axios.post('/addtopfive', item)
             .then(function (response) {
-                this.recents = response.data;
-                this.setState({recents: this.recents});
             }.bind(this))
             .catch(function (error) {
                 console.log(error);
@@ -171,16 +169,18 @@ class ApkTabs extends React.Component {
                                 />
                                 <CardActions>
                                     <Button raised label="Eterno" href={object.eterno}/>
-                                    <Button raised label="Variant" href={object.variant}/>
+                                    <Button raised label="Stage" href={object.variant}/>
                                     <Button raised label="QA" href={object.qc}/>
-                                    <Button raised label="Update" href={object.qc}/>
+                                    <Button raised label="Update" onMouseUp={function (e) {
+                                        this.handleUpdateClick({clicked: object})
+                                    }.bind(this)}/>
                                     <DialogTags key={"DialogTags" + i} tags={object.tags}/>
                                 </CardActions>
                             </Card>;
                         }.bind(this))}
                     </Tab>
                     <Tab label={this.THIRD_TAB}>
-                        <small><RcTabScreen isUnSuccessFulUpdate ={this.state.isSuccessFulUpdate}  isSuccessFulUpdate={this.state.isSuccessFulUpdate}
+                        <small><RcTabScreen isUnSuccessFulUpdate ={this.state.isUnSuccessFulUpdate}  isSuccessFulUpdate={this.state.isSuccessFulUpdate}
                                             updateRCItem={this.updateRCItem} addRCItem={this.addRCItem}
                                             model={this.logBuilds} stageUpdateItem = {this.state.stageUpdateItem}/>
                         </small>
