@@ -163,6 +163,14 @@ class RcTabScreen extends React.Component {
                         </td>
                         }
 
+                        {this.state.UISTATE == this.OPTION_3 &&
+                        <td style={{paddingRight:50+'px'}}>
+                            <section>
+                                <strong>Currently not available</strong>
+                            </section>
+                        </td>
+                        }
+
                     </tr>
                     </tbody>
                 </table>
