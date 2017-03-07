@@ -5,7 +5,7 @@ import theme from './grayAppBar.scss';
 
 const grayAppBar = ({ children, ...other }) => (
   <AppBar {...other} theme={theme}>
-    <Logo /> <p style={{color:'#000000'}}>Available builds</p>
+    <Logo /> <p style={{color:'#000000'}}>Release clients</p>
     {children}
   </AppBar>
 );
