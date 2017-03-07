@@ -141,7 +141,7 @@ class ApkTabs extends React.Component {
                                         <Button raised label="Prod" href={object.eterno} onMouseUp={function (e) {
                                             this.handleButtonClick({clicked: object})
                                         }.bind(this)}/>
-                                        <Button raised label="Stg" href={object.variant} onMouseUp={function (e) {
+                                        <Button raised label="Stg" href={object.stage} onMouseUp={function (e) {
                                             this.handleButtonClick({clicked: object})
                                         }.bind(this)}/>
                                         <Button raised label="QA" href={object.qc} onMouseUp={function (e) {
@@ -169,7 +169,7 @@ class ApkTabs extends React.Component {
                                 />
                                 <CardActions>
                                     <Button raised label="Prd" href={object.eterno}/>
-                                    <Button raised label="Stg" href={object.variant}/>
+                                    <Button raised label="Stg" href={object.stage}/>
                                     <Button raised label="QA" href={object.qc}/>
                                     <Button raised label="Update" onMouseUp={function (e) {
                                         this.handleUpdateClick({clicked: object})
