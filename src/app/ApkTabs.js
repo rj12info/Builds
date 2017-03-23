@@ -40,7 +40,7 @@ class ApkTabs extends React.Component {
     handleButtonClick = (item) => {
         let clicks = 1;
         item.clicked.clickCount = _.isNumber(item.clicked.clickCount) ? ++item.clicked.clickCount : 1
-        axios.post('/addtopfive', item)
+        axios.post('/huntbuilds/addtopfive', item)
             .then(function (response) {
             }.bind(this))
             .catch(function (error) {
@@ -66,7 +66,7 @@ class ApkTabs extends React.Component {
     }
 
     addRCItem = (rcitem)=> {
-        axios.post('/createrc', rcitem)
+        axios.post('/huntbuilds/createrc', rcitem)
             .then(function (response) {
                 if (response.data.n == 1 && response.status == 200) {
                     this.loadDBData();
@@ -81,7 +81,7 @@ class ApkTabs extends React.Component {
     };
 
     updateRCItem = (rcitem)=> {
-        axios.post('/update', rcitem)
+        axios.post('/huntbuilds/update', rcitem)
             .then(function (response) {
                 if (response.data.n == 1 && response.status == 200) {
                     this.setState({isSuccessFulUpdate: true, isUnSuccessFulUpdate: false});
@@ -100,7 +100,7 @@ class ApkTabs extends React.Component {
 
     loadDBData() {
         this.isLoading = true;
-        axios.get('/fetchAll')
+        axios.get('/huntbuilds/fetchAll')
             .then(function (response) {
                 this.logBuilds = response.data;
                 this.isLoading = false;
@@ -113,7 +113,7 @@ class ApkTabs extends React.Component {
 
     getRecents = () => {
         this.isLoading = true;
-        axios.get('/gettopfive')
+        axios.get('/huntbuilds/gettopfive')
             .then(function (response) {
                 this.recents = response.data;
                 this.isLoading = false;

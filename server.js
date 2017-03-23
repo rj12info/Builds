@@ -31,43 +31,43 @@ const middleware = webpackDevMiddleware(compiler, {
 app.use(middleware);
 app.use(webpackHotMiddleware(compiler));
 
-app.get('/home', (req, res) => {
+app.get('/huntbuilds/home', (req, res) => {
   res.sendFile(path.join(__dirname, './src/www/index.html'));
 });
 
-app.get('/fetchAll', (req, res) => {
+app.get('/huntbuilds/fetchAll', (req, res) => {
   db.collection('loggedBuilds').find().sort({'timeStamp':-1}).toArray(function(err, documents) {
     res.send(documents)
   });
 });
 
 
-app.post('/createrc', (req, res) => {
+app.post('/huntbuilds/createrc', (req, res) => {
   loggedBuilds = db.collection('loggedBuilds').insertOne((req.body), function(err, doc) {
     res.send(doc);
   });
 });
 
-app.post('/update', (req, res) => {
+app.post('/huntbuilds/update', (req, res) => {
   db.collection('loggedBuilds').update({"title":req.body.title}, req.body, function(err,doc){
     res.send(doc);
   });
 });
 
-app.post('/addtopfive', (req, res) => {
+app.post('/huntbuilds/addtopfive', (req, res) => {
   db.collection('loggedBuilds').update({"title":req.body.clicked.title}, {$set:{"clickCount":req.body.clicked.clickCount}}, function(err,doc){
     console.log("err "+err+" res"+doc);
     res.send(doc);
   });
 });
 
-app.get('/gettopfive', (req, res) => {
+app.get('/huntbuilds/gettopfive', (req, res) => {
   db.collection('loggedBuilds').find().sort({'clickCount':-1}).limit(5).toArray(function(err, documents) {
     res.send(documents)
   });
 });
 
-app.post('/delete', (req, res) => {
+app.post('/huntbuilds/delete', (req, res) => {
   loggedBuilds = db.collection('loggedBuilds').findOne({}, function(err, doc) {
     res.send(doc)
   });
